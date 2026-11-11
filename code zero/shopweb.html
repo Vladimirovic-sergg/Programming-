@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find your next favorite outfit at RUTH'S WEAR. Shop clothing, shoes, and everyday essentials.">
+  <title>RUTH'S WEAR | Find your everyday</title>
+  <style>
+    :root {
+      --ink: #24231f;
+      --muted: #77746e;
+      --paper: #fbfaf7;
+      --accent: #bd694e;
+      --accent-dark: #99513a;
+      --line: #e9e5dd;
+      --serif: Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+
+    .announcement {
+      padding: 10px 20px;
+      background: var(--ink);
+      color: white;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .site-header {
+      min-height: 82px;
+      padding: 0 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      flex: 0 0 auto;
+      font-family: var(--serif);
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      color: #55524c;
+      font-size: 13px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover, .text-link:hover { color: var(--accent-dark); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .search {
+      width: 205px;
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 11px 36px 11px 14px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      outline: none;
+      background: white;
+      font-size: 12px;
+    }
+
+    .search input:focus, .email-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgb(189 105 78 / 12%);
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .login-link {
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .visually-hidden {
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      position: absolute;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      padding: 70px 10%;
+      color: white;
+      background:
+        linear-gradient(90deg, rgb(29 26 23 / 70%) 0%, rgb(29 26 23 / 37%) 47%, rgb(29 26 23 / 5%) 100%),
+        url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=2000&q=85") center 43% / cover no-repeat;
+    }
+
+    .hero-content { max-width: 500px; }
+
+    .eyebrow {
+      margin: 0 0 17px;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 78px);
+      font-weight: normal;
+      line-height: .99;
+    }
+
+    .hero-copy {
+      max-width: 370px;
+      margin: 22px 0 30px;
+      color: rgb(255 255 255 / 88%);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 23px;
+      border: 1px solid var(--accent);
+      border-radius: 2px;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: background .2s, border-color .2s;
+    }
+
+    .button:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 76px 7%;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: normal;
+    }
+
+    .section-heading p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .text-link { font-size: 12px; font-weight: bold; }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .category-card {
+      min-height: 235px;
+      display: flex;
+      align-items: end;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+      background-position: center;
+      background-size: cover;
+      color: white;
+      isolation: isolate;
+    }
+
+    .category-card::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(0deg, rgb(0 0 0 / 62%), transparent 75%);
+      content: "";
+      transition: opacity .2s;
+    }
+
+    .category-card:hover::before { opacity: .8; }
+    .category-card h3 { margin: 0; font-family: var(--serif); font-size: 25px; font-weight: normal; }
+    .category-card span { display: block; margin-top: 6px; font-size: 11px; letter-spacing: 1px; }
+
+    .category-dresses { background-image: url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80"); }
+    .category-tops { background-image: url("https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=700&q=80"); }
+    .category-shoes { background-image: url("https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=700&q=80"); }
+    .category-accessories { background-image: url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80"); }
+
+    .featured { padding-top: 20px; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .product-card { min-width: 0; }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      display: block;
+      object-fit: cover;
+      background: #eeeae2;
+    }
+
+    .product-info {
+      padding: 13px 2px 0;
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .product-info h3 { margin: 0; font-size: 13px; font-weight: normal; }
+    .product-info p { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+    .price { white-space: nowrap; font-size: 13px; font-weight: bold; }
+    .no-results { grid-column: 1 / -1; padding: 30px 0; color: var(--muted); text-align: center; }
+
+    .signup {
+      padding: 55px 20px;
+      background: #eee9df;
+      text-align: center;
+    }
+
+    .signup h2 { margin: 0; font-family: var(--serif); font-size: 34px; font-weight: normal; }
+    .signup p { margin: 12px 0 22px; color: var(--muted); font-size: 13px; }
+
+    .email-form {
+      max-width: 430px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .email-input {
+      min-width: 0;
+      flex: 1;
+      padding: 13px;
+      border: 1px solid #d9d3c8;
+      border-radius: 2px;
+      outline: none;
+      background: white;
+      font-size: 13px;
+    }
+
+    .form-message { min-height: 18px; margin: 12px 0 0; font-size: 12px; }
+
+    footer {
+      padding: 25px 7%;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    @media (max-width: 850px) {
+      .site-header { padding: 18px 5%; flex-wrap: wrap; }
+      .main-nav { order: 3; width: 100%; gap: 22px; }
+      .search { width: 180px; }
+      .hero { min-height: 460px; padding: 60px 7%; }
+      .category-grid, .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .category-card { min-height: 260px; }
+    }
+
+    @media (max-width: 520px) {
+      .announcement { font-size: 9px; }
+      .site-header { gap: 15px; }
+      .brand { font-size: 21px; }
+      .header-actions { gap: 10px; }
+      .search { width: min(45vw, 175px); }
+      .search input { padding-left: 10px; }
+      .login-link { font-size: 11px; }
+      .main-nav { justify-content: space-between; gap: 10px; font-size: 12px; }
+      .hero { min-height: 430px; background-position: 58% center; }
+      .section { padding: 55px 5%; }
+      .section-heading { align-items: start; }
+      .section-heading p { max-width: 220px; line-height: 1.6; }
+      .category-grid { gap: 10px; }
+      .category-card { min-height: 200px; padding: 14px; }
+      .category-card h3 { font-size: 21px; }
+      .product-grid { gap: 20px 12px; }
+      .email-form { flex-direction: column; }
+      .email-form .button { width: 100%; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">A little something special — enjoy free shipping on orders over $75</div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Ruth's Wear home">RUTH'S <span>WEAR</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#shop">Shop all</a>
+      <a href="#categories">Clothing</a>
+      <a href="#categories">Shoes</a>
+      <a href="#newsletter">Our story</a>
+    </nav>
+    <div class="header-actions">
+      <label class="search">
+        <input id="product-search" type="search" placeholder="Search the shop..." aria-label="Search products">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+      </label>
+      <a class="login-link" href="#newsletter">Sign in</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Welcome to Ruth's Wear">
+      <div class="hero-content">
+        <p class="eyebrow">Good things to wear, every day</p>
+        <h1>Feel good.<br>Look like you.</h1>
+        <p class="hero-copy">Easy favorites, thoughtful details, and the little things that make getting dressed a joy.</p>
+        <a class="button" href="#shop">Explore the collection</a>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-heading">
+        <div>
+          <h2>Find your kind of thing</h2>
+          <p>Everyday pieces, picked just for you.</p>
+        </div>
+        <a class="text-link" href="#shop">Shop everything &rarr;</a>
+      </div>
+      <div class="category-grid">
+        <a class="category-card category-dresses" href="#shop" data-category="Dresses"><div><h3>Dresses</h3><span>THE ONE-AND-DONE FAVORITE</span></div></a>
+        <a class="category-card category-tops" href="#shop" data-category="Tops"><div><h3>Tops</h3><span>YOUR NEW GO-TO</span></div></a>
+        <a class="category-card category-shoes" href="#shop" data-category="Shoes"><div><h3>Shoes</h3><span>MADE TO GO PLACES</span></div></a>
+        <a class="category-card category-accessories" href="#shop" data-category="Accessories"><div><h3>Accessories</h3><span>THE FINISHING TOUCH</span></div></a>
+      </div>
+    </section>
+
+    <section class="section featured" id="shop">
+      <div class="section-heading">
+        <div>
+          <h2>Little things we love</h2>
+          <p>Meet a few of this season's favorites.</p>
+        </div>
+      </div>
+      <div class="product-grid" id="product-grid">
+        <article class="product-card" data-name="Sunday Linen Dress" data-category="Dresses">
+          <img class="product-image" src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80" alt="Soft neutral-colored summer dress" loading="lazy">
+          <div class="product-info"><div><h3>Sunday Linen Dress</h3><p>Dresses</p></div><span class="price">$68</span></div>
+        </article>
+        <article class="product-card" data-name="The Everyday Blouse" data-category="Tops">
+          <img class="product-image" src="https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=700&q=80" alt="Classic women's blouse" loading="lazy">
+          <div class="product-info"><div><h3>The Everyday Blouse</h3><p>Tops</p></div><span class="price">$42</span></div>
+        </article>
+        <article class="product-card" data-name="Sunday Best Sneakers" data-category="Shoes">
+          <img class="product-image" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80" alt="Colorful casual sneakers" loading="lazy">
+          <div class="product-info"><div><h3>Sunday Best Sneakers</h3><p>Shoes</p></div><span class="price">$74</span></div>
+        </article>
+        <article class="product-card" data-name="Little Gold Hoops" data-category="Accessories">
+          <img class="product-image" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=80" alt="Gold hoop earrings" loading="lazy">
+          <div class="product-info"><div><h3>Little Gold Hoops</h3><p>Accessories</p></div><span class="price">$28</span></div>
+        </article>
+      </div>
+      <p class="no-results" id="no-results" hidden>No matches just yet. Try another search.</p>
+    </section>
+
+    <section class="signup" id="newsletter">
+      <h2>A good note in your inbox.</h2>
+      <p>Sign in or join our list with your email for new arrivals and little treats.</p>
+      <form class="email-form" id="email-form">
+        <label for="email" class="visually-hidden">Your email address</label>
+        <input class="email-input" id="email" name="email" type="email" placeholder="Your email address" autocomplete="email" required>
+        <button class="button" type="submit">Continue with email</button>
+      </form>
+      <p class="form-message" id="form-message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer>
+    <span>&copy; <span id="year"></span> RUTH'S WEAR. Made for your everyday.</span>
+    <span>Thoughtful finds. Feel-good style.</span>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("product-search");
+    const products = Array.from(document.querySelectorAll(".product-card"));
+    const noResults = document.getElementById("no-results");
+
+    function filterProducts(query) {
+      const searchTerm = query.trim().toLowerCase();
+      let visibleCount = 0;
+
+      products.forEach((product) => {
+        const searchableText = `${product.dataset.name} ${product.dataset.category}`.toLowerCase();
+        const matches = searchableText.includes(searchTerm);
+        product.hidden = !matches;
+        if (matches) visibleCount += 1;
+      });
+
+      noResults.hidden = visibleCount !== 0;
+    }
+
+    searchInput.addEventListener("input", (event) => filterProducts(event.target.value));
+
+    document.querySelectorAll(".category-card").forEach((categoryLink) => {
+      categoryLink.addEventListener("click", () => {
+        searchInput.value = categoryLink.dataset.category;
+        filterProducts(searchInput.value);
+      });
+    });
+
+    document.getElementById("email-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      document.getElementById("form-message").textContent = `Thanks! We'll be in touch at ${email}.`;
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
